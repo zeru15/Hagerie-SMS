@@ -1,0 +1,24 @@
+.add-student-container {
+    display: flex;
+    flex-direction: row;
+    min-height: 100vh;
+    background-color: rgb(230, 230, 230);
+}
+
+.add-student-body {
+    flex-grow: 1;
+    
+}
+
+.add-student-body > h1 {
+    text-align: center;
+}
+
+.add-student-form {
+    background-color: white;
+    padding: 100px;
+    margin: 20px;
+}
+.personal-info label {
+    
+}

@@ -1,0 +1,37 @@
+.profile-container {
+    display: flex;
+    flex-direction: row;
+    min-height: 100vh;
+    background-color: rgb(230, 230, 230);
+}
+
+.profile-body {
+    flex-grow: 1;
+    text-align: center;
+}
+.profile-body h1 {
+    padding: 100px;
+    background-color: rgb(230, 230, 230);
+    background-image: url('./../../Images/school-header.png');
+    background-position: center;
+}
+.personal-info {
+    text-align: left;
+}
+.personal-info-heading {
+    text-align: left;
+    display: flex;
+    flex-grow: 1;
+}
+.personal-info-heading > h2 {
+    margin: 70px;
+}
+.personal-info ul  {
+    list-style-type: none;
+    display: grid;
+    grid-template-columns: repeat(2 , auto);
+}
+.personal-info ul li {
+    font-weight: bold;
+    margin: 20px;
+}

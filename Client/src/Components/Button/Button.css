@@ -1,0 +1,33 @@
+.btn {
+    background: #FCA61F;
+    border: none;
+    border-radius: 5px;
+    padding: 6px 16px;
+    font-size: 1.3rem;
+    cursor: pointer;
+    transition: 0.3s all ease-out;
+    display: flex;
+    align-items: center;
+    float: right;
+    margin-right: 2px;
+    color: whitesmoke;
+  }
+  
+  .btn:hover {
+    background: whitesmoke;
+    color: #FCA61F;
+  }
+  
+  a {
+    text-decoration: none;
+  }
+  
+  .btn span {
+    margin-left: 0.7rem;
+  }
+  
+  @media screen and (max-width: 900px) {
+    .btn span {
+      display: none;
+    }
+  }

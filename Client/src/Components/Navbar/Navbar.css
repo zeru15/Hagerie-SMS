@@ -1,0 +1,133 @@
+.navbar {
+    height: 10vh;
+    background: #272525;
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    align-items: center;
+  }
+  
+  .navbar-logo {
+    color: #FCA61F;
+    text-decoration: none;
+    font-size: 2.1rem;
+    display: flex;
+    align-items: center;
+    width: 14rem;
+    justify-content: space-between;
+    background-color: #1b1919;
+    padding: 20px;
+    font-family: "Gumela";
+   font-weight: normal;
+  }
+
+  .nav-items {
+    width: 65vw;
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 2rem;
+  }
+  
+  .nav-item {
+    list-style: none;
+    margin-left: 2rem;
+  }
+  
+  .nav-item a {
+    text-decoration: none;
+    color: whitesmoke;
+    font-size: 1.2rem;
+    padding: 6px 16px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: 0.2s all ease-out;
+  }
+  
+  .nav-item a:hover {
+    background: #FCA61F;
+  }
+  
+  .nav-item a span {
+    margin-left: 0.7rem;
+    font-size: 1.3rem;
+  }
+  
+  .sidebar-toggle {
+    width: 65vw;
+    display: flex;
+    justify-content: flex-end;
+  }
+  
+  .sidebar-toggle-logo {
+    font-size: 2.3rem;
+    color: whitesmoke;
+    cursor: pointer;
+    margin-right: 20px;
+  }
+  
+  .sidebar {
+    width: 16.5rem;
+    background: #1b1919;
+    height: 100vh;
+    position: absolute;
+    left: -100%;
+    transition: 0.3s all ease-in-out;
+  }
+  
+  .sidebar.active {
+    left: 0;
+  }
+  
+  .sidebar-items {
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    transition: 0.2s all ease-out;
+  }
+  
+  .sidebar-item {
+    list-style: none;
+    margin-top: 1rem;
+    width: 100%;
+    height: 3rem;
+  }
+  
+  .sidebar-item a {
+    text-decoration: none;
+    color: whitesmoke;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.2s all ease-out;
+  }
+  
+  .sidebar-item a span {
+    margin-left: 1.5rem;
+    font-size: 1.4rem;
+  }
+  
+  .sidebar-item a:hover {
+    background: #FCA61F;
+  }
+  
+  .sidebar .btn {
+    margin-top: 2.4rem;
+    width: 100%;
+  }
+  
+  @media screen and (max-width: 900px) {
+    .sidebar.active {
+      width: 5rem;
+    }
+  
+    .sidebar-item a span {
+      display: none;
+    }
+  }
+  

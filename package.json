@@ -1,0 +1,21 @@
+{
+  "name": "sms-final-project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "Server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "browserlist": "^1.0.1",
+    "express": "^4.18.1",
+    "mongoose": "^6.3.4",
+    "nodemon": "^2.0.16",
+    "react-swipeable-views": "^0.14.0",
+    "router": "^1.3.7",
+    "types": "^0.1.1"
+  }
+}

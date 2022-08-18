@@ -1,0 +1,89 @@
+.announcement-container {
+    display: flex;
+    flex-direction: row;
+    min-height: 100vh;
+    background-color: rgb(230, 230, 230);
+}
+
+.announcement-body {
+    flex-grow: 1;
+    text-align: center;
+}
+.announcement-body h1 {
+    padding: 100px;
+    background-color: rgb(230, 230, 230);
+    background-image: url('./../../Images/school-header.png');
+    background-position: center;
+}
+
+.announcement-body ul li {
+    list-style-type: none;
+    margin: 20px;
+}
+
+.announcement-body ul {
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+}
+
+.messages {
+    display: flex;
+    flex-direction: row;
+    border-top: 1px solid;
+    
+}
+
+.highlight-messages {
+    width: 50vw;
+}
+.highlight-messages li {
+    max-height: 200px;
+    /* overflow: auto; */
+}
+.body2 {
+    overflow: hidden;
+    max-height: 40px;
+}
+
+.pinned-message {
+    flex-grow: 1;
+    padding: 10px;
+    border: 5px solid purple;
+    margin: 20px;
+    height: 500px;
+}
+
+#contained-modal-title-vcenter > h2 {
+    color: Purple !important;
+}
+
+/* DialogDemo.css */
+
+.dialog-demo .p-button {
+    margin: 0 .5rem 0 0;
+    min-width: 10rem;
+}
+
+.dialog-demo p {
+    margin: 0;
+    line-height: 1.5;
+}
+
+.dialog-demo .p-dialog .p-button {
+    min-width: 6rem;
+}
+
+
+/* *,
+::after,
+::before {
+    box-sizing: content-box !important;
+}
+.btn {
+    color:white !important;
+    background-color: orange !important;
+}
+.btn:hover {
+    color:orange !important;
+    background-color: white !important;
+} */
