@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {useState, useEffect} from 'react'
+import { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import Navbar from '../../Components/Navbar/Navbar'
 import './AnnouncementScreen.css'
@@ -12,7 +12,9 @@ import { AnnouncementItems } from './AnnouncementItems'
 import { PinnedMessage } from './AnnouncementItems'
 import { Dialog } from 'primereact/dialog';
 import { Button } from 'primereact/button';
-import {Announcement} from '../../Actions/AnnouncementAction'
+import Modal from 'react-bootstrap/Modal';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { Announcement } from '../../Actions/AnnouncementAction'
 
 
 const bull = (
@@ -26,7 +28,6 @@ const bull = (
 
 function AnnouncementScreen() {
 
-
     const dispatch = useDispatch()
     const announcementState = useSelector(state => state.announcementReducer)
 
@@ -34,7 +35,10 @@ function AnnouncementScreen() {
 
     useEffect(() => { dispatch(Announcement()) }, [])
 
-    const [displayBasic, setDisplayBasic] = useState(false);
+
+    const [modalShow, setModalShow] = React.useState(false);
+
+    
 
 
     return (
@@ -45,116 +49,108 @@ function AnnouncementScreen() {
             <div className="announcement-body">
                 <h1>Announcements</h1>
                 <div className="messages">
-                    <div className="highlight-messages">
+                    <div className="messages">
 
                         {loading ? (<h1>Loading...</h1>) : error ? (<h1>Something Went Wrong!!!</h1>) : (
 
-                            <ul>
-                                {announcement.map(Announcement => {
+                            <div className="flex">
+                                <ul className="highlight-messages">
+                                    {
+                                        announcement.map(Announcement => {
 
-                                    
-                                    const dialogFuncMap = {
-                                        'displayBasic': setDisplayBasic
-                                    }
-                                    const onClick = (name, position) => {
-                                        dialogFuncMap[`${name}`](true);
-                                    }
-                                    const onHide = (name) => {
-                                        dialogFuncMap[`${name}`](false);
-                                    }
+                                            function MyVerticallyCenteredModal(props) {
+                                                return (
+                                                    <Modal
+                                                        {...props}
+                                                        size="lg"
+                                                        aria-labelledby="contained-modal-title-vcenter"
+                                                        centered
+                                                    >
+                                                        <Modal.Header closeButton>
+                                                            <Modal.Title id="contained-modal-title-vcenter">
+                                                                {Announcement.title}
+                                                            </Modal.Title>
+                                                        </Modal.Header>
+                                                        <Modal.Body>
+                                                            <h4>{Announcement.subtitle}</h4>
+                                                            <p>
+                                                                {Announcement.message}
+                                                            </p>
+                                                        </Modal.Body>
+                                                        <Modal.Footer>
+                                                            <Button onClick={props.onHide}>Close</Button>
+                                                        </Modal.Footer>
+                                                    </Modal>
+                                                );
+                                            }
+                                            
+                                            return (
 
-                                    const renderFooter = (name) => {
+
+                                                <li>
+                                                    <Card sx={{ maxWidth: 275, borderTop: 5, backgroundColor: 'lightblue' }}>
+                                                        <CardContent>
+                                                            <Typography variant="h5" component="div" sx={{ color: 'purple' }} >
+                                                                {Announcement.title}
+                                                            </Typography>
+                                                            <Typography sx={{ mb: 1.5 }} color="text.secondary">
+                                                                {Announcement.subtitle}
+                                                            </Typography>
+                                                            <Typography className="body2" variant="body2">
+                                                                {Announcement.message}
+                                                            </Typography>
+                                                        </CardContent>
+                                                        <CardActions>
+                                                            <Button onClick={() => setModalShow(true)} className="p-button-sm p-button-raised" label="View" icon="pi pi-external-link" />
+
+                                                        </CardActions>
+                                                    </Card>
+
+                                                    <MyVerticallyCenteredModal
+                                                        show={modalShow}
+                                                        onHide={() => setModalShow(false)}
+                                                    />
+                                                </li>
+                                            )
+                                        })
+                                    }
+                                </ul>
+
+
+                                <div className="pinned-message">
+                                    <h2>Pinned Message</h2>
+                                    {PinnedMessage.map(pinnedMessage => {
+
+
+
                                         return (
-                                            <div>
-                                                <Button label="Close" icon="pi pi-times" onClick={() => onHide(name)} className="p-button-text" />
-                                            </div>
-                                        );
-                                    }
-                                    
-                                    return (
-
-                                        <li>
-                                            <Card sx={{ maxWidth: 275, borderTop: 5, backgroundColor: 'lightblue' }}>
+                                            <Card sx={{ width: 270 }}>
                                                 <CardContent>
-                                                    <Typography variant="h5" component="div" sx={{ color: 'purple' }} >
-                                                        {Announcement.title}
+                                                    <Typography variant="h5" component="div">
+                                                        {pinnedMessage.title}
                                                     </Typography>
                                                     <Typography sx={{ mb: 1.5 }} color="text.secondary">
-                                                        {Announcement.subtitle}
+                                                        {pinnedMessage.subtitle}
                                                     </Typography>
-                                                    <Typography className="body2" variant="body2">
-                                                        {Announcement.message}
+                                                    <Typography variant="body2">
+                                                        {pinnedMessage.message}
                                                     </Typography>
                                                 </CardContent>
                                                 <CardActions>
-                                                    <Button className="p-button-sm p-button-raised" label="View" icon="pi pi-external-link" onClick={() => onClick('displayBasic')} />
-
+                                                    <Button className="p-button-sm p-button-raised" label="View" icon="pi pi-external-link" />
                                                 </CardActions>
 
-                                                <Dialog header={Announcement.title} visible={displayBasic} style={{ width: '50vw' }} footer={renderFooter('displayBasic')} onHide={() => onHide('displayBasic')}>
-                                                    <h3>{Announcement.subtitle}</h3>
-                                                    <p>{Announcement.message}</p>
-                                                </Dialog>
 
 
                                             </Card>
-                                        </li>
-                                    )
-                                })}
-                            </ul>
-
+                                        )
+                                    })}
+                                </div>
+                            </div>
                         )}
 
                     </div>
-                    <div className="pinned-message">
-                        <h2>Pinned Message</h2>
-                        {PinnedMessage.map(pinnedMessage => {
 
-                            const [displayBasic, setDisplayBasic] = useState(false);
-                            const dialogFuncMap = {
-                                'displayBasic': setDisplayBasic
-                            }
-                            const onClick = (name, position) => {
-                                dialogFuncMap[`${name}`](true);
-                            }
-                            const onHide = (name) => {
-                                dialogFuncMap[`${name}`](false);
-                            }
-
-                            const renderFooter = (name) => {
-                                return (
-                                    <div>
-                                        <Button label="Close" icon="pi pi-times" onClick={() => onHide(name)} className="p-button-text" />
-                                    </div>
-                                );
-                            }
-
-                            return (
-                                <Card sx={{ width: 270 }}>
-                                    <CardContent>
-                                        <Typography variant="h5" component="div">
-                                            {pinnedMessage.title}
-                                        </Typography>
-                                        <Typography sx={{ mb: 1.5 }} color="text.secondary">
-                                            {pinnedMessage.subtitle}
-                                        </Typography>
-                                        <Typography variant="body2">
-                                            {pinnedMessage.message}
-                                        </Typography>
-                                    </CardContent>
-                                    <CardActions>
-                                        <Button className="p-button-sm p-button-raised" label="View" icon="pi pi-external-link" onClick={() => onClick('displayBasic')} />
-                                    </CardActions>
-
-                                    <Dialog header={pinnedMessage.title} visible={displayBasic} style={{ width: '50vw' }} footer={renderFooter('displayBasic')} onHide={() => onHide('displayBasic')}>
-                                        <h3>{pinnedMessage.subtitle}</h3>
-                                        <p>{pinnedMessage.message}</p>
-                                    </Dialog>
-
-                                </Card>
-                            )
-                        })}
-                    </div>
                 </div>
             </div>
 
