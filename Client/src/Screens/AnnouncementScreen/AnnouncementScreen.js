@@ -12,8 +12,6 @@ import { AnnouncementItems } from './AnnouncementItems'
 import { PinnedMessage } from './AnnouncementItems'
 import { Dialog } from 'primereact/dialog';
 import { Button } from 'primereact/button';
-import Modal from 'react-bootstrap/Modal';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import { Announcement } from '../../Actions/AnnouncementAction'
 
 
@@ -35,9 +33,6 @@ function AnnouncementScreen() {
 
     useEffect(() => { dispatch(Announcement()) }, [])
 
-
-    const [modalShow, setModalShow] = React.useState(false);
-
     
 
 
@@ -57,32 +52,6 @@ function AnnouncementScreen() {
                                 <ul className="highlight-messages">
                                     {
                                         announcement.map(Announcement => {
-
-                                            function MyVerticallyCenteredModal(props) {
-                                                return (
-                                                    <Modal
-                                                        {...props}
-                                                        size="lg"
-                                                        aria-labelledby="contained-modal-title-vcenter"
-                                                        centered
-                                                    >
-                                                        <Modal.Header closeButton>
-                                                            <Modal.Title id="contained-modal-title-vcenter">
-                                                                {Announcement.title}
-                                                            </Modal.Title>
-                                                        </Modal.Header>
-                                                        <Modal.Body>
-                                                            <h4>{Announcement.subtitle}</h4>
-                                                            <p>
-                                                                {Announcement.message}
-                                                            </p>
-                                                        </Modal.Body>
-                                                        <Modal.Footer>
-                                                            <Button onClick={props.onHide}>Close</Button>
-                                                        </Modal.Footer>
-                                                    </Modal>
-                                                );
-                                            }
                                             
                                             return (
 
@@ -100,16 +69,13 @@ function AnnouncementScreen() {
                                                                 {Announcement.message}
                                                             </Typography>
                                                         </CardContent>
-                                                        <CardActions>
-                                                            <Button onClick={() => setModalShow(true)} className="p-button-sm p-button-raised" label="View" icon="pi pi-external-link" />
+                                                        <CardActions>5
+                                                            <Button className="p-button-sm p-button-raised" label="View" icon="pi pi-external-link" />
 
                                                         </CardActions>
                                                     </Card>
 
-                                                    <MyVerticallyCenteredModal
-                                                        show={modalShow}
-                                                        onHide={() => setModalShow(false)}
-                                                    />
+                                                    
                                                 </li>
                                             )
                                         })
